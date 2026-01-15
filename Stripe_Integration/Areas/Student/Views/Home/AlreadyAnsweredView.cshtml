@@ -1,0 +1,19 @@
+﻿@model Stripe_Integration.Models.TechengineeMisQuestion
+
+@{
+    Layout = "/Areas/Student/Views/Shared/_Layout.cshtml";
+}
+
+<h3>You Have Already Answered This Question</h3>
+<div class="form-group">
+    <p class="card-text">Subject Name: <span class="fw-bold">@Model.Subject.SubjectName</span></p>
+</div>
+<div class="form-group">
+    <label for="QuestionText">Question:</label>
+    <p>@Model.QuestionsTxt</p>
+</div>
+<div class="form-group">
+    <label for="AnswerText">Your Answer:</label>
+    <p>@ViewBag.Answer.AnswerTxt</p>
+</div>
+<a href="/Student/Home/FetchQuestions?subjectCode=@Model.SubjectCode" class="btn btn-primary">Go Back</a>

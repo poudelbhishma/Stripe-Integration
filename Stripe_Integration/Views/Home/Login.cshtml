@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+@if (TempData.ContainsKey("PasswordResetSuccess"))
+{
+    <script>
+        alert("@TempData["PasswordResetSuccess"]");
+    </script>
+}
+
+<style>
+    
+
+    .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for form */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+        margin-top:30%;
+    }
+  
+
+    .form-group label {
+        color: #ffffff; /* Label text color */
+    }
+
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background for input fields */
+        color: #ffffff; /* Input text color */
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .form-control:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Highlight on focus */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Button color */
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker color on hover */
+    }
+</style>
+
+<div class="form-container">
+    <h1 style="color:white;">Login</h1>
+    @if (ViewBag.Message != null)
+    {
+        <p style="color:red">@ViewBag.Message</p>
+    }
+
+ 
+
+    <form asp-action="Login" method="post">
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" name="Email" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" name="Password" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+    </form>
+</div>
+
+

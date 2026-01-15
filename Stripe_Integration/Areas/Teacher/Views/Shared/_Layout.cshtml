@@ -1,0 +1,54 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Title Here</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style>
+        /* Sidebar */
+        
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="container">
+            <h2 class="text-center">Question Management</h2>
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <a  asp-area="Teacher" asp-controller="Home" asp-action="AddQuestion">Add Questions</a>
+                </li>
+                <li class="mb-2">
+                    <a asp-area="Teacher" asp-controller="Home" asp-action="ListQuestions">Manage Questions</a>
+                </li>        
+                <li class="mb-2">
+                    <a asp-area="Teacher" asp-controller="Home" asp-action="ChangePassword">ChangePassword</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    </footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
