@@ -1,2 +1,1 @@
-# Stripe-Integration
-Stripe Integration
+A simple Management Information System for classroom
