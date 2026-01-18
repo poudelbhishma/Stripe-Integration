@@ -1,0 +1,45 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+</head>
+<body>
+    <header>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="container">
+                <h2 class="text-center">Dashboard</h2>
+                <ul class="list-unstyled">
+                    <li class="mb-2" style="display:none;">
+                        <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "ListTeacher" ? "active" : "")" asp-area="Admin" asp-controller="Home" asp-action="ListTeacher">Teacher</a>
+                    </li>
+                    <li class="mb-2">
+                        <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "ProductList" ? "active" : "")" asp-area="Admin" asp-controller="Home" asp-action="ProductList">Product</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <div class="main-content">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

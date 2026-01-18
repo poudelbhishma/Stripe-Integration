@@ -1,0 +1,16 @@
+﻿@model Stripe_Integration.Models.TechengineeMisTeacher
+@{
+    Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="management-title">Delete Teacher</h2>
+<div>
+    <p>Are you sure you want to delete the following teacher?</p>
+    <p><strong>ID:</strong> @Model.TeacherId</p>
+    <p><strong>Name:</strong> @Model.Name</p>
+    
+    <form id="deleteTeacherForm" asp-action="DeleteTeacher" method="post">
+        <input type="hidden" asp-for="TeacherId" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+</div>

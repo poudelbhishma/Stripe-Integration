@@ -1,0 +1,60 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Title Here</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+     
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="container">
+            <h2 class="text-center">Question Management</h2>
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <a asp-area="Student" asp-controller="Home" asp-action="FetchQuestions" asp-route-subjectCode="1">MIS</a>
+                </li>
+                <li class="mb-2">
+                    <a asp-area="Student" asp-controller="Home" asp-action="FetchQuestions" asp-route-subjectCode="2">MAD</a>
+                </li>
+                <li class="mb-2">
+                    <a asp-area="Student" asp-controller="Home" asp-action="FetchQuestions" asp-route-subjectCode="3">SAD</a>
+                </li>
+                <li class="mb-2">
+                    <a asp-area="Student" asp-controller="Home" asp-action="FetchQuestions" asp-route-subjectCode="4">MFCS</a>
+                </li>
+                <li class="mb-2">
+                    <a asp-area="Student" asp-controller="Home" asp-action="FetchQuestions" asp-route-subjectCode="5">NM</a>
+                </li>       
+                <li class="mb-2">
+                    <a asp-area="Student" asp-controller="Home" asp-action="ChangePassword">Change Password</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </footer>
+</body>
+</html>

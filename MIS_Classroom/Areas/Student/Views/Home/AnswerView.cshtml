@@ -1,0 +1,20 @@
+﻿@model Stripe_Integration.Models.TechengineeMisQuestion
+
+@{
+    Layout = "/Areas/Student/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Provide Your Answer</h3>
+<div class="form-group">
+    <label for="QuestionText">Question:</label>
+    <p>@Model.QuestionsTxt</p>
+</div>
+<form action="/Student/Home/SubmitAnswer" method="post">
+    <div class="form-group">
+        <label for="AnswerText">Your Answer:</label>
+        <textarea class="form-control" name="AnswerTxt" rows="3"></textarea>
+    </div>
+    <input type="hidden" name="QuestionId" value="@Model.QuestionId" />
+    <button type="submit" class="btn btn-primary">Submit Answer</button>
+</form>
+

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Stripe_Integration.Models.ManageProduct>
+
+@{
+    Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Product List</h2>
+
+<div class="mb-3 text-end">
+    <a href="@Url.Action("AddProduct", "Home")" class="btn btn-success">
+        <i class="fa fa-plus"></i> Add New Product
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 80px;">Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th style="width: 160px;">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @if (!string.IsNullOrEmpty(item.ImagePath))
+                                {
+                                    <img src="@Url.Content(item.ImagePath)"
+                                         class="img-thumbnail"
+                                         width="60"
+                                         height="60" />
+                                }
+                                else
+                                {
+                                    <span class="text-muted">No Image</span>
+                                }
+                            </td>
+
+                            <td>@item.ProductName</td>
+                            <td>@item.Price</td>
+                            <td>@item.Quantity</td>
+
+                            <td class="text-center">
+                                <a href="@Url.Action("EditProduct", "Home", new { id = item.ProductID })"
+                                   class="btn btn-sm btn-warning me-1">
+                                    Edit
+                                </a>
+
+                                <form asp-area="Admin" asp-action="DeleteConfirmed" asp-controller="Home" method="post" style="display:inline;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@item.ProductID" />
+
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?');">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">
+                            No products found
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

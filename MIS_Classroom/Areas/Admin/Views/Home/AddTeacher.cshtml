@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Stripe_Integration.Models.TechengineeMisSubject>
+@{
+    Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2 class="management-title">Add Teacher</h2>
+@{
+    if (ViewBag.Message != null)
+    {
+        <p style="color:red">@ViewBag.Message</p>
+    }
+}
+<form id="addTeacherForm" action="/Admin/Home/AddTeacher" method="post">
+    <div class="mb-3">
+        <label for="teacherName" class="form-label">Name</label>
+        <input type="text" class="form-control" id="teacherName" name="Name" required>
+    </div>
+    <div class="mb-3">
+        <label for="teacherEmail" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="teacherEmail" name="Email" required>
+    </div>
+    <div class="mb-3">
+        <label for="subjectSelect" class="form-label">Subject</label>
+        <select class="form-select" id="subjectSelect" name="SubjectCode" required>
+            @foreach (var subject in Model)
+            {
+                <option value="@subject.SubjectCode">@subject.SubjectName</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="teacherPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" id="teacherPassword" name="Password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

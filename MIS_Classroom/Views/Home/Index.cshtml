@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Stripe_Integration.Models.ManageProduct>
+
+@{
+    ViewData["Title"] = "Shop";
+    Layout = "_Layout";
+}
+
+<div class="container py-5" style="margin-top:3rem;">
+
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Our Products</h2>
+        <p class="text-muted">Discover quality products at the best prices</p>
+    </div>
+
+    <div class="row gx-4 gy-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="product-box h-100">
+
+                    <!-- Image -->
+                    <div class="product-img-box">
+                        <img src="@Url.Content(item.ImagePath ?? "~/images/no-image.png")"
+                             alt="@item.ProductName" />
+                    </div>
+
+                    <!-- Info -->
+                    <div class="p-3 text-center">
+                        <h6 class="fw-semibold text-truncate mb-1">
+                            @item.ProductName
+                        </h6>
+
+                        <small class="text-muted d-block mb-2">
+                            @item.Descriptions
+                        </small>
+
+                        <div class="price mb-3">
+                            Rs. @item.Price
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <a asp-controller="Home"
+                               asp-action="Details"
+                               asp-route-id="@item.ProductID"
+                               class="btn btn-outline-primary btn-sm">
+                                View
+                            </a>
+
+                            <a asp-controller="Checkout"
+                               asp-action="Index"
+                               asp-route-id="@item.ProductID"
+                               class="btn btn-success btn-sm">
+                                Buy Now
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

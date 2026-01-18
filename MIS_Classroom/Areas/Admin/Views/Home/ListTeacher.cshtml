@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Stripe_Integration.Models.TechengineeMisTeacher>
+@{
+    Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Teacher Management</h2>
+@if (TempData["TeacherAdd"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["TeacherAdd"]
+    </div>
+}
+<a href="/Admin/Home/AddTeacher" class="btn btn-primary btn-management" id="addTeacherBtn">Add Teacher</a>
+<table class="management-table table mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="managementContent">
+        @foreach (var teacher in Model)
+        {
+            <tr>
+                <td>@teacher.TeacherId</td>
+                <td>@teacher.Name</td>
+                <td>@teacher.Email</td>
+                <td>@teacher.Subject.SubjectName</td>
+                <td>
+                    <a href="/Admin/Home/EditTeacher/@teacher.TeacherId" class="btn btn-sm btn-warning btn-management">Edit</a>
+                    <button type="button" class="btn btn-sm btn-danger btn-management delete-button" data-teacher-id="@teacher.TeacherId" data-teacher-email="@teacher.Email">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="modal fade" id="deleteTeacherModal" tabindex="-1" aria-labelledby="deleteTeacherModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteTeacherModalLabel">Delete Teacher</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="deleteTeacherForm" method="post" action="/Admin/Home/DeleteTeacher">
+                    <input type="hidden" name="id" id="deleteTeacherId" />
+                    <p>Are you sure you want to delete the following teacher?</p>
+                    <p><strong>ID:</strong> <span id="deleteTeacherIdSpan"></span></p>
+                    <p><strong>Email:</strong> <span id="deleteTeacherEmailSpan"></span></p>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.delete-button').click(function () {
+                var teacherId = $(this).data('teacher-id');
+                var teacherEmail = $(this).data('teacher-email');
+
+                $('#deleteTeacherId').val(teacherId);
+                $('#deleteTeacherIdSpan').text(teacherId);
+                $('#deleteTeacherEmailSpan').text(teacherEmail);
+
+                $('#deleteTeacherModal').modal('show');
+            });
+        });
+    </script>
+}

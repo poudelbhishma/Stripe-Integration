@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = " Login";
+}
+
+@if (TempData.ContainsKey("PasswordResetSuccess"))
+{
+    <script>
+        alert("@TempData["PasswordResetSuccess"]");</script>
+}
+
+<section class="login-section">
+    <div class="hero-login">
+        <div class="hero-left">
+            <h1>Secure Access<br />to Your Account</h1>
+            <p>
+                Manage your products, orders, and payments in one powerful dashboard.
+                Fast, secure, and built for modern web applications.
+            </p>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <h2>99.9%</h2>
+                    <span>Uptime</span>
+                </div>
+                <div class="hero-stat">
+                    <h2>24/7</h2>
+                    <span>Support</span>
+                </div>
+                <div class="hero-stat">
+                    <h2>Secure</h2>
+                    <span>SSL Protected</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="login-card">
+                <h2>Welcome Back</h2>
+                <p>Login to continue</p>
+
+                @if (ViewBag.Message != null)
+                {
+                    <div class="error-message">@ViewBag.Message</div>
+                }
+
+                <form asp-action="Login" method="post">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="Email" class="form-control" placeholder="Enter your email" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="Password" class="form-control" placeholder="Enter your password" required />
+                    </div>
+
+                    <button type="submit" class="btn-login">Login</button>
+                </form>
+
+                <div class="login-footer">
+                    <p>Forgot password? <a asp-controller="Account" asp-action="ForgotPassword">Reset here</a></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

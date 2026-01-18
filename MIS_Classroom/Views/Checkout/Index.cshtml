@@ -1,0 +1,38 @@
+﻿@model Stripe_Integration.Models.ManageProduct
+
+<div class="container py-5" style="margin-top:7rem;">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-sm p-4">
+
+                <h4 class="fw-bold mb-3">Checkout</h4>
+
+                <div class="text-center mb-3">
+                    <img src="@Url.Content(Model.ImagePath)"
+                         class="img-fluid"
+                         style="max-height:200px;" />
+                </div>
+
+                <h5>@Model.ProductName</h5>
+                <p class="text-muted">@Model.Descriptions</p>
+
+                <h4 class="text-success mb-4">
+                    Rs. @Model.Price
+                </h4>
+
+                <form asp-action="CreateCheckoutSession" method="post">
+                    <input type="hidden" name="productId"
+                           value="@Model.ProductID" />
+
+                    <button type="submit"
+                            class="btn btn-success w-100">
+                        Pay with Stripe
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Stripe_Integration.Models.TechengineeMisSubject>
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<h2 class="management-title">Registration</h2>
+@{
+    if (ViewBag.Message != null)
+    {
+        <p style="color:red">@ViewBag.Message</p>
+    }
+}
+<form id="registrationForm" action="Registration" method="post" style="margin-top:30%;">
+    <div class="mb-3">
+        <label for="userType" class="form-label">User Type</label>
+        <select class="form-select" id="userType" name="UserType" required>
+            <option value="Teacher">Teacher</option>
+            <option value="Student">Student</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="Name" required>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" name="Email" required>
+    </div>
+    <div class="mb-3" id="subjectDiv">
+        <label for="subject" class="form-label">Subject</label>
+        <select class="form-select" id="subject" name="SubjectCode" required>
+            @foreach (var subject in Model)
+            {
+                <option value="@subject.SubjectCode">@subject.SubjectName</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3" id="semesterDiv" style="display: none;">
+        <label for="semester" class="form-label">Semester</label>
+        <input type="text" class="form-control" id="semester" name="Semester">
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="Password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script>
+    // Show/hide subject or semester input based on selected user type
+    document.getElementById('userType').addEventListener('change', function () {
+        var selectedUserType = this.value;
+        var subjectDiv = document.getElementById('subjectDiv');
+        var semesterDiv = document.getElementById('semesterDiv');
+
+        if (selectedUserType === 'Teacher') {
+            subjectDiv.style.display = 'block';
+            semesterDiv.style.display = 'none';
+        } else if (selectedUserType === 'Student') {
+            subjectDiv.style.display = 'none';
+            semesterDiv.style.display = 'block';
+        }
+    });
+</script>
+

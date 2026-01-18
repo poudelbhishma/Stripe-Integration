@@ -1,0 +1,31 @@
+﻿@model Stripe_Integration.Models.TechengineeMisTeacher
+@{
+    Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="management-title">Edit Teacher</h2>
+<div class="mb-3">
+    <label for="studentEmail" class="form-label"><b>Edit profile of User:</b> <i>@Model.Email</i></label>
+</div>
+<form id="editTeacherForm" asp-action="EditTeacher" method="post">
+    <input type="hidden" id="teacherEmail" name="Email" value="@Model.Email" required>
+
+    <div class="mb-3">
+        <label for="teacherName" class="form-label">Name</label>
+        <input type="text" class="form-control" id="teacherName" name="Name" value="@Model.Name" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="subjectSelect" class="form-label">Subject</label>
+        <select class="form-select" id="subjectSelect" name="SubjectCode" required>
+            @foreach (var subject in ViewBag.Subjects)
+            {
+                <option value="@subject.SubjectCode" @(subject.SubjectCode == Model.SubjectCode ? "selected" : "")>@subject.SubjectName</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<a href="/Admin/Home/ResetTeacherPassword/?email=@Model.Email" class="btn btn-warning mt-3">Reset Password</a>

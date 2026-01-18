@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Stripe_Integration.Models.TechengineeMisQuestion>
+
+
+@{
+    Layout = "/Areas/Student/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model != null && Model.Any())
+{
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Questions for : <span class="fw-bold">@Model.FirstOrDefault()?.Subject.SubjectName</span></h2>
+            @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+            {
+                <div class="alert alert-success" role="alert">
+                    @ViewBag.SuccessMessage
+                </div>
+            }
+            <ol class="list-group list-unstyled">
+                @foreach (var question in Model)
+                {
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div style="width:90%; text-align:justify">
+                    <li class="list-group-item mb-3" style="border:none !important; top:20px">
+                        <p>@question.Position. @question.QuestionsTxt</p>
+                    </li>
+                     </div>
+                      
+                        <div style="width:10%">
+                            <a href="@Url.Action("AnswerView", "Home", new { questionId = question.QuestionId })" class="btn btn-primary">Answer</a>
+            </div>
+                        
+                        </div>
+                   
+                  
+                   
+                }
+            </ol>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        No questions available for the selected subject.
+    </div>
+}
