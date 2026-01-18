@@ -1,1 +1,1 @@
-A C# ASP.NET MVC-based e-commerce system featuring role-based authorization. Super users manage admin accounts, admins handle product management, and users complete purchases through integrated Stripe payment processing.
+ASP.NET MVC e-commerce web application with role-based access, product management, and Stripe payment integration.
