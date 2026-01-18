@@ -1,1 +1,1 @@
-A simple Management Information System for classroom
+A C# ASP.NET MVC-based e-commerce system featuring role-based authorization. Super users manage admin accounts, admins handle product management, and users complete purchases through integrated Stripe payment processing.
